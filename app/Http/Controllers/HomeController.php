@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\receive;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -19,7 +21,18 @@ class HomeController extends Controller
             'term' => 'required',
             'mobile' => 'required'
         ]);
+        $newReceive = new receive();
+        $newReceive->name = $request->name;
+        $newReceive->currentaddress = $request->currentaddress;
+        $newReceive->term = $request->term;
+        $newReceive->mobile = $request->mobile;
+        $newReceive->save();
+        return redirect()->route('towel');
+    }
 
-
+    public function usage()
+    {
+        $usage = receive::paginate();
+        return view('towel', compact('usage'));
     }
 }
