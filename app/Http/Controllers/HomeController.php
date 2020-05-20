@@ -10,4 +10,16 @@ class HomeController extends Controller
     {
         return view('towel');
     }
+
+    public function receive(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'currentaddress' => 'required',
+            'term' => 'required',
+            'mobile' => 'required'
+        ]);
+
+
+    }
 }
